@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1773513778947,
+      "tag": "0000_lush_forgotten_one",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1773513920519,
+      "tag": "0001_giant_black_widow",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1773529244175,
+      "tag": "0002_mighty_george_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1773532084988,
+      "tag": "0003_dazzling_la_nuit",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+              {/* Basic info - Dynamic fields */}
+              <div
+                className="rounded-2xl p-4"
+                style={{ background: "var(--card)", border: "1px solid var(--border)" }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--primary)" }}>
+                    Informações
+                  </p>
+                  {canEdit && (
+                    <button
+                      onClick={() => {
+                        const newId = `info_${Date.now()}`;
+                        const currentInfo = char.basicInfo ?? {};
+                        updateField("basicInfo", {
+                          ...currentInfo,
+                          [newId]: { label: "Nova informação", value: "" },
+                        });
+                      }}
+                      className="text-xs flex items-center gap-1 hover:opacity-70"
+                      style={{ color: "var(--primary)" }}
+                    >
+                      <Plus className="w-3 h-3" /> Adicionar
+                    </button>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  {/* Dynamic custom fields */}
+                  {char.basicInfo && Object.entries(char.basicInfo).map(([id, info]) => (
+                    <div key={id} className="flex items-center gap-2">
+                      <InlineEdit
+                        value={info.label}
+                        onSave={(v) =>
+                          updateField("basicInfo", {
+                            ...char.basicInfo,
+                            [id]: { ...info, label: v },
+                          })
+                        }
+                        className="text-xs font-medium w-32 shrink-0"
+                        style={{ color: "var(--muted-foreground)" }}
+                      />
+                      <InlineEdit
+                        value={info.value}
+                        onSave={(v) =>
+                          updateField("basicInfo", {
+                            ...char.basicInfo,
+                            [id]: { ...info, value: v },
+                          })
+                        }
+                        placeholder="—"
+                        className="text-sm flex-1"
+                        style={{ color: "var(--foreground)" }}
+                      />
+                      {canEdit && (
+                        <button
+                          onClick={() => {
+                            const newInfo = { ...char.basicInfo };
+                            delete newInfo[id];
+                            updateField("basicInfo", newInfo);
+                          }}
+                          className="text-xs flex items-center gap-1 hover:opacity-70"
+                          style={{ color: "var(--muted-foreground)" }}
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  {(!char.basicInfo || Object.keys(char.basicInfo).length === 0) && (
+                    <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>Nenhuma informação adicionada</p>
+                  )}
+                </div>
+              </div>
